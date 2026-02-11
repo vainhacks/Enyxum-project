@@ -358,3 +358,100 @@ body {
 .industry-page .navbar.scrolled {
     background: rgba(3, 7, 18, 0.98);
 }
+
+
+/* --- 11. ABOUT PAGE SPECIFIC --- */
+.about-hero {
+    padding: 180px 0 100px;
+    background: linear-gradient(180deg, rgba(3, 7, 18, 0.8) 0%, var(--dark-bg) 100%),
+                url('https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+}
+
+.section-title {
+    font-weight: 800;
+    margin-bottom: 25px;
+    background: var(--gradient-btn);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.principle-item h6 {
+    color: var(--text-white);
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.max-w-750 { max-width: 750px; }
+
+.about-page .navbar.scrolled {
+    background: rgba(3, 7, 18, 0.98);
+}
+
+.ethos-section .icon-glow i {
+    font-size: 1.5rem;
+}
+
+
+/* --- 12. CAREERS PAGE SPECIFIC --- */
+.careers-hero {
+    padding: 180px 0 80px;
+    background: linear-gradient(180deg, rgba(3, 7, 18, 0.8) 0%, var(--dark-bg) 100%),
+                url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+}
+
+.small-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.small-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.engagement-card {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 3px solid var(--accent-blue);
+}
+
+.careers-page .navbar.scrolled {
+    background: rgba(3, 7, 18, 0.98);
+}
+
+
+
+/* --- 13. DELIVERY PAGE SPECIFIC --- */
+.delivery-hero {
+    padding: 180px 0 80px;
+    background: linear-gradient(180deg, rgba(3, 7, 18, 0.8) 0%, var(--dark-bg) 100%),
+                url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2026&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+}
+
+.benefit-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.benefit-list li {
+    font-size: 1rem;
+    color: var(--text-white);
+}
+
+.delivery-page .navbar.scrolled {
+    background: rgba(3, 7, 18, 0.98);
+}
+
+.badge.bg-primary {
+    background: rgba(13, 110, 253, 0.2) !important;
+    border: 1px solid var(--primary-blue);
+    color: var(--accent-blue);
+    font-weight: 600;
+}
