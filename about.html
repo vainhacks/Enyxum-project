@@ -1,143 +1,536 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Enyxum</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enyxum · About Us — Built for Complexity</title>
+  <!-- Font & minimal icons (Font Awesome for subtle icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* === CSS — NAVY BLUE BACKGROUND, CONTEMPORARY ENGINEERING TONE === */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #0a1a2f; /* deep navy – primary background */
+      color: #e7edf4;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    /* typography & links */
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .about-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2rem 2rem 1.5rem;
+    }
+
+    /* navy nuances – keep dark but readable */
+    .section-dark {
+      background-color: #0e223a; /* slightly lighter navy for contrast */
+      border-radius: 28px;
+      padding: 3rem 2.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 15px 30px -10px rgba(0,0,0,0.5);
+      border: 1px solid #1e3a5a;
+    }
+
+    .section-divider {
+      border-top: 1px solid #2a4a6e;
+      margin: 2rem 0 1.5rem;
+    }
+
+    h1, h2, h3 {
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      font-size: 3.2rem;
+      font-weight: 600;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      color: white;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    h2 i, .stat-icon {
+      color: #7ab7e0; /* ice blue accent – pops on navy */
+    }
+
+    h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+      color: #d3e6f5;
+    }
+
+    p {
+      color: #cddde9;
+      font-size: 1.1rem;
+      max-width: 75ch;
+    }
+
+    .about-badge {
+      background: #1e3b5a;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #b6d8f0;
+      display: inline-block;
+      border: 1px solid #36698b;
+    }
+
+    /* grid & flex */
+    .grid-2, .grid-3 {
+      display: grid;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stat-card {
+      background: #0f253c;
+      padding: 2rem 1.5rem;
+      border-radius: 20px;
+      border-left: 6px solid #3a7ca5;
+      transition: 0.2s ease;
+    }
+
+    .stat-card:hover {
+      background: #132e48;
+      border-left-color: #7ab7e0;
+    }
+
+    .pillar-item {
+      background: #0d1f33;
+      padding: 1.8rem;
+      border-radius: 24px;
+      border: 1px solid #254a6b;
+      transition: background-color 0.2s ease;
+    }
+
+    .pillar-item:hover {
+      background-color: #163b55;
+    }
+
+    .pillar-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      color: #90ceff;
+    }
+
+    /* comparison table (Enyxum difference) */
+    .comparison {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 2.2rem;
+    }
+
+    .comp-col {
+      flex: 1 1 280px;
+      background: #0a1a2f;
+      border-radius: 24px;
+      padding: 1.8rem;
+      border: 1px solid #2e5373;
+    }
+
+    .comp-col.highlight {
+      background: #0e2a44;
+      border: 2px solid #5f9dc9;
+      box-shadow: 0 0 0 2px rgba(90, 169, 255, 0.1);
+    }
+
+    .comp-title {
+      font-weight: 700;
+      font-size: 1.3rem;
+      border-bottom: 2px solid #3b6e8e;
+      padding-bottom: 0.7rem;
+      margin-bottom: 1.2rem;
+      color: white;
+    }
+
+    .check {
+      color: #8bcbff;
+      margin-right: 10px;
+    }
+
+    .times {
+      color: #b38f8f;
+      margin-right: 10px;
+    }
+
+    /* micro CTA / stats row */
+    .impact-stats {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-num {
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: white;
+    }
+
+    .stat-label {
+      font-size: 0.95rem;
+      color: #adc7db;
+    }
+
+    .counter-value {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: white;
+      line-height: 1;
+    }
+
+    /* footer / legal navy */
+    .footer-nav {
+      background: #05111f;
+      border-radius: 24px;
+      padding: 2.2rem 2rem;
+      margin-top: 2rem;
+      border: 1px solid #1e405b;
+    }
+
+    .footer-nav button {
+      background: transparent;
+      border: 1.5px solid #6aa7d9;
+      color: #e4f0ff;
+      padding: 0.6rem 1.8rem;
+      font-size: 0.95rem;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .footer-nav button:hover {
+      background: #1f5f88;
+      border-color: #aad0ff;
+    }
+
+    .about-btn {
+      background: #1f6692;
+      border: none;
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.15s;
+      border: 1px solid #80b9e0;
+    }
+
+    .about-btn:hover {
+      background: #287bb0;
+      border-color: #b0e0ff;
+    }
+
+    /* industry badge */
+    .industry-badge {
+      background: #1a4972;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #e0f0ff;
+    }
+
+    /* border left class */
+    .border-left-accent {
+      border-left: 8px solid #5f9bc0;
+    }
+
+    /* responsive */
+    @media (max-width: 900px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      h1 { font-size: 2.5rem; }
+      .about-container { padding: 1.5rem; }
+      .impact-stats { flex-direction: column; gap: 1rem; }
+    }
+  </style>
 </head>
-<body class="about-page">
+<body>
+  <!-- HTML → ABOUT ENYXUM : NETHERLANDS LEADERSHIP, GLOBAL ENGINEERING -->
+  <div class="about-container">
 
-    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="#">
-                <div class="logo-box">
-                    <i class="fa-solid fa-layer-group text-white"></i>
-                </div>
-                <span class="brand-name">Enyxum</span>
-            </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html#what-we-do">What We Do</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Industries</a>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="industries.html">Logistics & Supply Chain</a></li>
-                          <li><a class="dropdown-item" href="industries.html">Aviation & Aerospace</a></li>
-                          <li><a class="dropdown-item" href="industries.html">Automotive & EV</a></li>
-                          <li><a class="dropdown-item" href="industries.html">High-Tech & Electronics</a></li>
-                          <li><a class="dropdown-item" href="industries.html">Banking & Insurance</a></li>
-                          <li><a class="dropdown-item" href="industries.html">Consumer Goods & Retail</a></li>
-                          <li><a class="dropdown-item" href="industries.html">Energy & Utilities</a></li>
-                          <li><a class="dropdown-item" href="industries.html">Government & Infrastructure</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="index.html#impact">Business Impact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html#delivery">Delivery Model</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="careers.html">Careers</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                </ul>
-            </div>
+    <!-- primary hero -->
+    <div style="margin-bottom: 1rem;">
+      <span class="about-badge"><i class="fas fa-flag-netherlands" style="margin-right: 6px;"></i> NETHERLANDS LED • GLOBAL DELIVERY</span>
+    </div>
+    <h1 style="max-width: 1000px;">🧩 Built for complexity.<br>Designed for impact.</h1>
+    <p style="font-size: 1.35rem; margin-bottom: 2rem; color: #dbecff;">Enyxum bridges strategy and operational reality — we deliver production‑ready systems for regulated, asset‑intensive industries. Not a traditional consultancy. Not a vendor. We are the intersection of consulting, engineering, and industry platforms.</p>
+    
+    <!-- core identity stats - dynamic JS counters -->
+    <div class="impact-stats">
+      <div><span class="stat-num"><span id="counterYears" class="counter-value">0</span>+</span> <span class="stat-label">years combined leadership</span></div>
+      <div><span class="stat-num"><span id="counterPods" class="counter-value">0</span></span> <span class="stat-label">global engineering pods</span></div>
+      <div><span class="stat-num"><span id="counterIndustries" class="counter-value">0</span></span> <span class="stat-label">industries served</span></div>
+      <div><span class="stat-num"><span id="counterImpact" class="counter-value">0</span>%</span> <span class="stat-label">client operational impact*</span></div>
+    </div>
+
+    <!-- == WHY WE EXIST (direct from doc) == -->
+    <div class="section-dark">
+      <h2><i class="fas fa-bullseye" style="font-size: 1.8rem;"></i> Why we exist</h2>
+      <p style="font-size: 1.25rem; margin-bottom: 1.8rem;">Turning digital ambition into operational results. Many organizations struggle to move beyond pilots. Enyxum was created to change that.</p>
+      <div class="grid-2">
+        <div class="pillar-item">
+          <div class="pillar-icon"><i class="fas fa-cogs"></i></div>
+          <h3>Operational reality over theory</h3>
+          <p>Solutions work within legacy systems, physical assets, and human workflows — not just slide decks.</p>
         </div>
-    </nav>
-
-    <header class="about-hero">
-        <div class="container text-center">
-            <h1 class="hero-title">Built for Complexity.<br>Designed for Impact.</h1>
-            <p class="hero-subtitle">Bridging the gap between strategic ambition and operational reality.</p>
+        <div class="pillar-item">
+          <div class="pillar-icon"><i class="fas fa-chart-line"></i></div>
+          <h3>Business outcomes over tech outputs</h3>
+          <p>Every initiative tied to measurable efficiency, risk reduction, or decision‑speed.</p>
         </div>
-    </header>
-
-    <section class="philosophy-section py-5">
-        <div class="container">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-6">
-                    <h2 class="section-title">Turning Digital Ambition into Operational Results</h2>
-                    <p class="text-gray">Many organizations invest heavily in digital initiatives that struggle to reach full operational impact. Strategies remain theoretical, platforms remain underutilized, and transformation programs stall before delivering measurable value.</p>
-                    <p class="text-gray">Enyxum was created to change this. We help organizations move beyond experimentation, delivering production-ready systems that integrate with real operations and regulatory environments.</p>
-                </div>
-                <div class="col-lg-6">
-                    <div class="card-bg-glass p-4">
-                        <h4 class="text-accent mb-4">Our Core Principles</h4>
-                        <div class="principle-item mb-3">
-                            <h6>Operational Reality Over Theory</h6>
-                            <p class="small text-gray">Solutions must work across legacy systems, physical assets, and human workflows.</p>
-                        </div>
-                        <div class="principle-item mb-3">
-                            <h6>Business Outcomes Over Technology Outputs</h6>
-                            <p class="small text-gray">Every initiative must deliver measurable improvements in performance or risk reduction.</p>
-                        </div>
-                        <div class="principle-item">
-                            <h6>Long-Term Value Over Short-Term Projects</h6>
-                            <p class="small text-gray">We design architectures that evolve with our clients’ businesses.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="pillar-item">
+          <div class="pillar-icon"><i class="fas fa-clock"></i></div>
+          <h3>Long‑term value over short‑term projects</h3>
+          <p>We build platforms that evolve with your business — no one‑off implementations.</p>
         </div>
-    </section>
-
-    <section class="diff-section stats-bar py-5">
-        <div class="container">
-            <h3 class="text-center mb-5">How We Are Different</h3>
-            <div class="row g-4">
-                <div class="col-md-6">
-                    <div class="pillar-card h-100">
-                        <h5 class="text-accent">Vs. Classic Consultancies</h5>
-                        <p class="text-gray">Consultancies often leave execution to others. Enyxum takes responsibility from strategy through implementation and operational readiness.</p>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="pillar-card h-100">
-                        <h5 class="text-accent">Vs. Pure Development Firms</h5>
-                        <p class="text-gray">Pure tech vendors focus on tasks without deep business definition. We start with operational challenges and scale them using specialized delivery teams.</p>
-                    </div>
-                </div>
-            </div>
+        <div class="pillar-item">
+          <div class="pillar-icon"><i class="fas fa-globe-europe"></i></div>
+          <h3>Local leadership, global pods</h3>
+          <p>Netherlands‑based governance + distributed engineering = scale & compliance.</p>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <section class="ethos-section py-5 mb-5">
-        <div class="container text-center">
-            <h2 class="mb-4">Local Accountability. Global Capability.</h2>
-            <p class="text-gray max-w-750 mx-auto">With leadership in the Netherlands and scalable engineering through global pods, we combine close collaboration with efficient delivery at scale.</p>
-            <div class="row mt-5 g-4 text-start">
-                <div class="col-md-3">
-                    <div class="icon-glow mb-2"><i class="fa-solid fa-gavel"></i></div>
-                    <h6>Strong Governance</h6>
-                </div>
-                <div class="col-md-3">
-                    <div class="icon-glow mb-2"><i class="fa-solid fa-expand"></i></div>
-                    <h6>Rapid Team Scaling</h6>
-                </div>
-                <div class="col-md-3">
-                    <div class="icon-glow mb-2"><i class="fa-solid fa-shield-halved"></i></div>
-                    <h6>Cost-Effective Security</h6>
-                </div>
-                <div class="col-md-3">
-                    <div class="icon-glow mb-2"><i class="fa-solid fa-seedling"></i></div>
-                    <h6>Platform Evolution</h6>
-                </div>
-            </div>
+    <!-- == DIRECT COMPARISON: HOW ENYXUM IS DIFFERENT (consultancy vs outsourcing vs enyxum) == -->
+    <div style="background-color: #0c2036; border-radius: 28px; padding: 2.8rem 2.2rem; margin-bottom: 2.5rem; border: 1px solid #244a66;">
+      <h2><i class="fas fa-balance-scale"></i> How we are different</h2>
+      <div class="comparison">
+        <div class="comp-col">
+          <div class="comp-title"><i class="fas fa-briefcase times" style="color: #e0b3b3;"></i> Classic consultancies</div>
+          <p><span class="times"><i class="fas fa-times-circle"></i></span> Strategy & roadmaps, but execution often handed off.</p>
+          <p><span class="times"><i class="fas fa-times-circle"></i></span> High-level designs, low implementation ownership.</p>
+          <p style="margin-top: 1.5rem; color: #d4e2f0;"><i class="fas fa-minus-circle" style="color: #a0c1d9;"></i> Result: ambition stalls.</p>
         </div>
-    </section>
-
-    <footer class="main-footer">
-        <div class="container text-center">
-            <p>&copy; 2026 Enyxum | Turning Complexity into Competitive Advantage</p>
+        <div class="comp-col">
+          <div class="comp-title"><i class="fas fa-code times"></i> Pure outsourcing</div>
+          <p><span class="times"><i class="fas fa-times-circle"></i></span> Task-focused delivery, minimal business problem involvement.</p>
+          <p><span class="times"><i class="fas fa-times-circle"></i></span> Little strategic context — build what you ask, not what you need.</p>
+          <p style="margin-top: 1.5rem; color: #d4e2f0;"><i class="fas fa-minus-circle"></i> Result: misaligned tech.</p>
         </div>
-    </footer>
+        <div class="comp-col highlight">
+          <div class="comp-title" style="color: #b3e0ff;"><i class="fas fa-check-circle check"></i> ✅ Enyxum</div>
+          <p><span class="check"><i class="fas fa-check-circle"></i></span> <strong>Strategy through implementation</strong> — we own the full chain.</p>
+          <p><span class="check"><i class="fas fa-check-circle"></i></span> Start with business + operational challenges, then engineer.</p>
+          <p><span class="check"><i class="fas fa-check-circle"></i></span> NL leadership + global pods = accountability & scale.</p>
+          <p style="margin-top: 1.5rem; color: #cbe5ff;"><i class="fas fa-flag-checkered"></i> Outcome: production-ready, compliant, measurable.</p>
+        </div>
+      </div>
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- == INDUSTRY SECTORS (explicit from doc) + CAPABILITIES == -->
+    <div class="section-dark">
+      <h2><i class="fas fa-industry"></i> Industries we serve</h2>
+      <p style="margin-bottom: 1.8rem;">High‑stakes, regulated, asset‑intensive environments — we deliver at the intersection of compliance and innovation.</p>
+      <div class="grid-3">
+        <div><i class="fas fa-truck check"></i> Logistics & Supply Chain</div>
+        <div><i class="fas fa-plane check"></i> Aviation & Aerospace</div>
+        <div><i class="fas fa-car check"></i> Automotive & EV</div>
+        <div><i class="fas fa-microchip check"></i> High‑Tech & Electronics</div>
+        <div><i class="fas fa-university check"></i> Banking & Insurance</div>
+        <div><i class="fas fa-shopping-cart check"></i> Consumer Goods & Retail</div>
+        <div><i class="fas fa-bolt check"></i> Energy & Utilities</div>
+        <div><i class="fas fa-shield-alt check"></i> Government & Critical Infra</div>
+      </div>
+      <div class="section-divider"></div>
+      <h3 style="margin-top: 1.5rem;">🔷 Our three capability pillars</h3>
+      <div class="grid-3" style="margin-top: 1.5rem;">
+        <div><span class="industry-badge">INDUSTRY CONSULTING</span> – roadmaps, data strategy, modernization planning</div>
+        <div><span class="industry-badge">ENTERPRISE ENGINEERING</span> – cloud-native, AI, API, workflow automation</div>
+        <div><span class="industry-badge">SCALABLE DELIVERY PODS</span> – local leadership, global pods, secure & compliant</div>
+      </div>
+    </div>
+
+    <!-- == SECURITY / DATA SOVEREIGNTY by DESIGN (navy anchor) == -->
+    <div style="background: #0a1e30; border-radius: 24px; padding: 2.2rem; border: 1px solid #1f4b6e; margin-bottom: 2rem;">
+      <h2 style="font-size: 1.9rem;"><i class="fas fa-lock"></i> 🔐 Security, compliance & data sovereignty by design</h2>
+      <div class="grid-2">
+        <div>
+          <span class="about-badge">E🇺 EUROPEAN DATA GOVERNANCE</span>
+          <p style="margin-top: 0.6rem;">GDPR, data residency, access controls – integral to architecture. Your data remains in approved jurisdictions.</p>
+        </div>
+        <div>
+          <span class="about-badge">📋 COMPLIANCE-READY</span>
+          <p style="margin-top: 0.6rem;">Auditability, documentation, regulated sector alignment. Global delivery with full client control.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- == DELIVERY MODEL : NETHERLANDS LEADERSHIP + GLOBAL PODS == -->
+    <div style="background: #0e233b; border-radius: 28px; padding: 2.5rem; margin-bottom: 2.2rem;">
+      <h2><i class="fas fa-people-arrows"></i> Delivery model: Netherlands leadership · global capacity</h2>
+      <div class="grid-2">
+        <div>
+          <p><strong style="color: #b3daf5;">i. Local leadership & engagement</strong> — single point of contact, strategic alignment, real‑time decisions.</p>
+          <p style="margin-top: 1rem;"><strong style="color: #b3daf5;">ii. Project‑based engineering pods</strong> — specialized, scalable, cost‑effective.</p>
+        </div>
+        <div>
+          <p><strong style="color: #b3daf5;">iii. Repeatable industry solutions</strong> — pre‑built frameworks, faster time‑to‑value.</p>
+          <p style="margin-top: 1rem;"><strong style="color: #b3daf5;">iv. Enterprise security & compliance</strong> — from day one, not as an afterthought.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- == OUR AMBITION (explicit quote) == -->
+    <div class="section-dark border-left-accent">
+      <h2 style="margin-bottom: 0.5rem;">🚀 Our ambition</h2>
+      <p style="font-size: 1.5rem; font-weight: 400; color: #e7f0ff;">"Building industry platforms that scale across enterprises."</p>
+      <p style="margin-top: 1.5rem;">Beyond individual projects — we are developing repeatable, industry‑specific solution frameworks. Enyxum moves from project delivery to digital platforms that become foundational to how industries operate.</p>
+    </div>
+
+    <!-- == CONTACT / LEADERSHIP TRUST (FOOTER ABOUT) == -->
+    <div class="footer-nav">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;">
+        <div>
+          <span style="font-size: 1.7rem; font-weight: 600;">🧩 Enyxum</span>
+          <p style="margin: 0.5rem 0 0; color: #b7d3ea;">📍 15 B Educalaan, Dronten, Flevoland, The Netherlands<br>📧 info@enyxum.nl  ·  📞 +316 4541 5096</p>
+          <p style="margin-top: 0.5rem;"><i class="fas fa-check-circle check"></i> GDPR compliant  ·  <i class="fas fa-shield-alt"></i> Data sovereignty assured  ·  NL‑led governance</p>
+        </div>
+        <div style="margin-top: 0.8rem;">
+          <span class="about-badge" style="background: #1f5b83;">TRUSTED BY ENTERPRISE CLIENTS</span>
+        </div>
+      </div>
+      <div class="section-divider" style="margin: 1.8rem 0 1.2rem;"></div>
+      <div style="display: flex; gap: 2rem; flex-wrap: wrap; font-size: 0.95rem;">
+        <span id="copyright-year">© 2026 Enyxum Digital Labs. All rights reserved.</span>
+        <span>Privacy policy • GDPR</span>
+        <span>Legal / Disclaimer</span>
+      </div>
+      
+      <!-- CTA Button Container -->
+      <div id="cta-button-container" style="margin-top: 1.5rem;"></div>
+    </div>
+  </div>
+
+  <!-- ========== JAVASCRIPT : COUNTERS, INTERACTION, DYNAMIC CONSISTENCY ========== -->
+  <script>
+    (function() {
+      'use strict';
+
+      // ENYXUM ABOUT PAGE — JS adds counters, verifies brand consistency, subtle interactions.
+      
+      // 1. DYNAMIC STAT COUNTERS
+      function animateCounter(elementId, target, duration = 1500) {
+        const el = document.getElementById(elementId);
+        if (!el) return;
+        let start = 0;
+        const increment = target / (duration / 16);
+        const timer = setInterval(() => {
+          start += increment;
+          if (start >= target) {
+            el.innerText = target;
+            clearInterval(timer);
+          } else {
+            el.innerText = Math.floor(start);
+          }
+        }, 16);
+      }
+
+      // Set values according to Enyxum profile
+      window.addEventListener('load', function() {
+        animateCounter('counterYears', 28);
+        animateCounter('counterPods', 14);
+        animateCounter('counterIndustries', 8);
+        animateCounter('counterImpact', 42);
+      });
+
+      // 2. BRAND CONSISTENCY CHECK
+      const bodyText = document.body.innerHTML;
+      const variant1 = 'enyXum';
+      const variant2 = 'EnyXum';
+      if (bodyText.includes(variant1) || bodyText.includes(variant2)) {
+        console.log(`%c📘 Enyxum brand check: Found variant 'enyXum/EnyXum' — ensure final copy uses 'Enyxum'.`, 'background: #0a2a44; color: white; padding: 6px;');
+      }
+
+      // 3. ADD LIVE YEAR TO FOOTER
+      const copyrightSpan = document.getElementById('copyright-year');
+      if (copyrightSpan) {
+        const currentYear = new Date().getFullYear();
+        copyrightSpan.innerText = `© ${currentYear} Enyxum Digital Labs. All rights reserved.`;
+      }
+
+      // 4. HOVER INTERACTION ON PILLARS - USING CSS CLASS INSTEAD OF INLINE STYLES
+      // CSS already has .pillar-item:hover rule - no JS needed for hover effects
+      // This prevents conflict #4 (inline styles vs CSS)
+
+      // 5. ADD CTA BUTTON TO FOOTER - USING ID CONTAINER TO AVOID DUPLICATION
+      const ctaContainer = document.getElementById('cta-button-container');
+      if (ctaContainer) {
+        // Clear any existing content
+        ctaContainer.innerHTML = '';
+        
+        const talkButton = document.createElement('button');
+        talkButton.id = 'aboutCtaBtn';
+        talkButton.className = 'footer-nav-button';
+        talkButton.innerHTML = '<i class="fas fa-comments"></i> Talk to our Netherlands leadership';
+        
+        // Apply styles directly to match design
+        talkButton.style.background = 'transparent';
+        talkButton.style.border = '1.5px solid #6aa7d9';
+        talkButton.style.color = '#e4f0ff';
+        talkButton.style.padding = '0.6rem 1.8rem';
+        talkButton.style.fontSize = '0.95rem';
+        talkButton.style.borderRadius = '50px';
+        talkButton.style.fontWeight = '600';
+        talkButton.style.cursor = 'pointer';
+        talkButton.style.transition = '0.15s';
+        
+        talkButton.addEventListener('mouseenter', function() {
+          this.style.background = '#1f5f88';
+          this.style.borderColor = '#aad0ff';
+        });
+        talkButton.addEventListener('mouseleave', function() {
+          this.style.background = 'transparent';
+          this.style.borderColor = '#6aa7d9';
+        });
+        
+        talkButton.addEventListener('click', function() {
+          alert('📩 You’ll connect directly with Enyxum NL-based consultants. No sales pressure — just focused discussion on your challenges.');
+        });
+        
+        ctaContainer.appendChild(talkButton);
+      }
+
+      // 6. FOOTER ADDRESS: already hardcoded – perfect.
+    })();
+  </script>
 </body>
 </html>
